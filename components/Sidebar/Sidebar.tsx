@@ -40,7 +40,7 @@ const Sidebar = ({ display, displaymd }: Props) => {
         <div
             className={` min-h-screen sticky bg-[#ECECEC] ${display} md:${displaymd} `}
         >
-            <div className="h-screen sticky top-0 left-0 w-64 ">
+            <div className="h-screen sticky top-0 left-0 w-52 sm:w-64 ">
                 <div className="hidden md:flex pl-12 h-[3.5rem]  items-center  bg-white">
                     <Image
                         src={Paystride}
@@ -81,13 +81,16 @@ const SidebarItem = ({ item }: { item: SidebarProps }) => {
                 }
             )}
         >
-            <Link href={item.href} className="flex gap-2 py-3 px-10 w-full">
+            <Link
+                href={item.href}
+                className="flex gap-2 py-2 sm:py-3 px-8 sm:px-10 w-full"
+            >
                 <Image
                     src={item.icon}
                     alt={item.title}
                     className={classNames({ "text-white": isActive })}
                 />
-                <span className="flex-1 text-base font-medium">
+                <span className="flex-1 text-sm sm:text-base font-medium">
                     {item.title}
                 </span>
             </Link>
