@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import classNames from "classnames";
 
 type Props = {};
 
@@ -12,8 +13,8 @@ const DashboardStats = (props: Props) => {
         {
             title: "total revenue",
             amount: "N" + "900,000",
-            settle: "No of Settlement",
-            settleNumber: "100",
+            description: "No of Settlement",
+            count: "100",
         },
         {
             title: "merchants",
@@ -30,12 +31,12 @@ const DashboardStats = (props: Props) => {
     ];
     return (
         <div>
-            <div className="flex flex-wrap justify-center md:justify-normal h-[6.5rem] sm:h-[7.6rem] gap-4">
+            <div className="flex flex-wrap justify-center md:justify-normal gap-4">
                 {Stats.map((stats, index) => {
                     return (
                         <div
                             key={index}
-                            className=" bg-white rounded-md py-3 px-4 h-full w-[8rem] sm:min-w-[175px] border-[2.066px] border-solid border-[#ECEEF6]"
+                            className=" bg-white rounded-md py-3 px-4 h-[6.5rem] sm:h-[7.6rem] w-[8rem] sm:min-w-[175px] border-[2.066px] border-solid border-[#ECEEF6]"
                         >
                             <h1 className="text-[#343434] font-bold mb-1 capitalize text-xs sm:text-base">
                                 {stats.title}
@@ -43,13 +44,22 @@ const DashboardStats = (props: Props) => {
                             <p className="font-bold text-[#232323] text-xl sm:text-3xl mb-2">
                                 {stats.amount}
                             </p>
-                            <p className="text-[#ECECEC] flex text-[8px] sm:text-xs">
-                                {stats.settle}{" "}
-                                <span className="text-green-600 bg-green-200 font-semibold">
-                                    {" "}
-                                    {stats.settleNumber}
-                                </span>
-                            </p>
+                            <div className="flex justify-between items-center">
+                                <p className="text-[#949494] text-[8px] sm:text-xs tracking-[0.145px]">
+                                    {stats.description}
+                                </p>
+                                <div
+                                    className={classNames({
+                                        "px-1 sm:px-2 rounded-[50px] bg-[#23c10a26]":
+                                            stats.count,
+                                    })}
+                                >
+                                    <p className="text-green-700 font-semibold text-[9px] sm:text-sm">
+                                        {" "}
+                                        {stats.count}
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     );
                 })}

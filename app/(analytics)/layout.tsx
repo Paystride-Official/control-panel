@@ -18,7 +18,7 @@ export default function RootLayout({
                 <Sidebar display={"hidden"} displaymd={"flex"} />
                 <div className="flex flex-col flex-[7]">
                     <Navbar />
-                    <div className=" w-full bg-[#FAFAFA] min-h-[100vh] px-4 py-6">
+                    <div className=" w-full bg-[#FAFAFA] min-h-[100vh] p-5">
                         {children}
                     </div>
                 </div>
