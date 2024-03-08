@@ -1,22 +1,30 @@
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import searchIcon from "@/components/Search/assets/Search.svg";
 
-type Props = {
-  search: string;
-  setSearch: React.Dispatch<React.SetStateAction<string>>;
-};
+type Props = {};
 
-const Search = ({ search, setSearch }: Props) => {
+const Search = (props: Props) => {
+  const [expand, setExpand] = useState(false);
+
   return (
-    <div className=" flex gap-3  border border-solid border-[#E9ECEF] px-2">
-      <Image src={searchIcon} alt="search" />
+    <div
+      className={`bg-white flex items-center md:w-[25vw] border border-solid border-[#E2E8F0] px-1 sm:px-2 rounded-2xl
+           ${expand ? "gap-1" : "gap-0"}
+          `}
+    >
+      <Image
+        onClick={() => setExpand(!expand)}
+        src={searchIcon}
+        alt="search"
+        className="w-auto cursor-pointer"
+      />
       <input
         type="text"
-        className="outline-none border-[none] py-1 w-full"
-        placeholder="Search..."
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
+        className={`outline-none border-[none] py-2 md:w-full text-[#8A92A6] rounded-2xl text-sm sm:text-base duration-[1000ms] ${
+          expand ? "w-[30vw]" : "w-0"
+        }`}
+        placeholder="Search"
       />
     </div>
   );
