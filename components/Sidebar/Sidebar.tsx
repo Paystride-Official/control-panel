@@ -1,6 +1,5 @@
 "use client";
 import Image from "next/image";
-// import Dashboard from "@/components/Sidebar/assets/Dashboard.svg";
 import {
   Dashboard,
   Transaction,
@@ -8,16 +7,11 @@ import {
   Permission,
   Settlement,
 } from "../Icons/Icons";
-
-// import Transaction from "@/components/Sidebar/assets/Transaction.svg";
-// import Merchant from "@/components/Sidebar/assets/Merchant.svg";
-// import Permission from "@/components/Sidebar/assets/Permission.svg";
-// import Settlements from "@/components/Sidebar/assets/Settlement.svg";
 import Paystride from "@/app/assets/Paystride.svg";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import classNames from "classnames";
-import { ReactNode, useState } from "react";
+import { ReactNode } from "react";
 import Settings from "../Settings/Settings";
 import Notification from "../Notification/Notification";
 import SignOut from "../SignOut/SignOut";
