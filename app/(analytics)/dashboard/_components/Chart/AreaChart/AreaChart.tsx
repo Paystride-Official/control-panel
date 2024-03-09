@@ -74,16 +74,16 @@ const data = [
     },
 ];
 
-export default function Chart() {
+export default function AChart() {
     return (
-        <div style={{ width: "100%", height: 300 }}>
+        <div className="h-[12rem] sm:h-[19rem]" style={{ width: "100%" }}>
             <ResponsiveContainer>
                 <AreaChart
                     data={data}
                     margin={{
-                        top: 10,
-                        right: 30,
-                        left: 0,
+                        top: 5,
+                        right: 5,
+                        left: -25,
                         bottom: 0,
                     }}
                 >
@@ -96,21 +96,25 @@ export default function Chart() {
                             y2="1"
                         >
                             <stop
-                                offset="10%"
+                                offset="5%"
                                 stopColor="#8884d8"
                                 stopOpacity={0.8}
                             />
                             <stop
-                                offset="90%"
+                                offset="95%"
                                 stopColor="#8884d8"
                                 stopOpacity={0}
                             />
                         </linearGradient>
                     </defs>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="name" />
-                    <YAxis />
+                    <CartesianGrid strokeDasharray="3 3" vertical={false} />
+
+                    <XAxis dataKey="name" axisLine={false} tickLine={false} />
+
+                    <YAxis axisLine={false} tickLine={false} />
+
                     <Tooltip />
+
                     <Area
                         type="natural"
                         dataKey="uv"
