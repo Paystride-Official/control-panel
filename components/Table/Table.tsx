@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import Delete from "@/components/Table/assets/Delete.svg";
+"use client";
+import React from "react";
+
 import {
   Table,
   TableHeader,
@@ -9,35 +10,14 @@ import {
   TableCell,
 } from "@nextui-org/react";
 import { NewUser, column, row } from "@/types/types";
-import Image from "next/image";
 
 type TableProps = {
   columns: NewUser[] | undefined;
   rows: row[];
-  openModal?: () => void;
-
-  setSingleRow?: React.Dispatch<React.SetStateAction<object>>;
-  setDeleteModal?: React.Dispatch<React.SetStateAction<boolean>>;
-  deleteModal?: boolean;
 };
 
-export function TableComponent({
-  rows,
-  columns,
-  setSingleRow,
-  openModal,
-  deleteModal,
-  setDeleteModal,
-}: TableProps) {
-  const getData = (column: object) => {
-    if (column) {
-      setSingleRow?.(column);
-    }
-  };
-
+export function TableComponent({ rows, columns }: TableProps) {
   const renderCell = React.useCallback((column: column, columnKey: any) => {
-    // const cellValue = column[columnKey as keyof column[]];
-
     switch (columnKey) {
       case "name":
         return (
@@ -47,33 +27,10 @@ export function TableComponent({
           </div>
         );
 
-      case "onDuty":
-        return (
-          <div
-            onClick={() => {
-              openModal?.(), getData(column);
-            }}
-            className="flex item-center gap-8 cursor-pointer "
-          >
-            <p>{column.onDuty}</p>
-            {/* <div className="flex item-center justify-center ">
-                            <Image src={Arrowdown} alt="arrow_down" />
-                        </div> */}
-          </div>
-        );
-
       case "status":
         return (
           <div className=" flex items-start gap-8">
             <p>{column.status}</p>
-            {/* <div
-              className="flex item-center justify-center gap-6 cursor-pointer"
-              onClick={() => {
-                openModal?.(), getData(column);
-              }}
-            >
-              <Image src={Edit} alt="Edit" />
-            </div> */}
           </div>
         );
 
@@ -84,58 +41,31 @@ export function TableComponent({
           </div>
         );
 
-      case "dashboard":
-        return (
-          <div className="flex justify-center items-center">
-            <input type="checkbox" checked={column.dashboard} />
-          </div>
-        );
       case "transaction":
         return (
           <div className="flex justify-center items-center">
             <input type="checkbox" checked={column.transaction} />
           </div>
         );
-      case "paymentPoint":
+      case "merchant":
         return (
           <div className="flex justify-center items-center">
             <input type="checkbox" checked={column.paymentPoint} />
           </div>
         );
-      case "settlement":
+      case "permission":
         return (
           <div className="flex justify-center items-center">
             <input type="checkbox" checked={column.settlement} />
           </div>
         );
-      case "settings":
+      case "settlement":
         return (
           <div className="flex justify-center items-center">
             <input type="checkbox" checked={column.settings} />
           </div>
         );
 
-      case "action":
-        return (
-          <div className="flex w-full item-start justify-start gap-6 cursor-pointer">
-            {/* <Image
-                            src={Edit}
-                            alt="Edit"
-                            width={15}
-                            height={15}
-                            onClick={() => {
-                                openModal?.(), getData(column);
-                            }}
-                        /> */}
-            <Image
-              src={Delete}
-              width={15}
-              height={15}
-              alt="Delete"
-              onClick={() => setDeleteModal && setDeleteModal(!deleteModal)}
-            />
-          </div>
-        );
       default:
         return column[columnKey];
     }
@@ -153,7 +83,7 @@ export function TableComponent({
             <TableColumn
               key={column?.key}
               style={{ overflowX: "auto" }}
-              className="text-[#949494] text-sm sm:text-base bg-transparent"
+              className="text-[#A0AEC0] text-[10px] sm:text-xs font-bold bg-transparent"
             >
               {column.label}
             </TableColumn>
@@ -169,7 +99,7 @@ export function TableComponent({
             <TableRow key={item.key}>
               {(columnKey) => (
                 <TableCell
-                  className="text-[#949494] text-xs sm:text-sm"
+                  className="text-[#A0AEC0] text-xs sm:text-sm"
                   style={{ overflowX: "auto" }}
                 >
                   {renderCell(item, columnKey)}

@@ -7,6 +7,7 @@ import {
   Permission,
   Settlement,
 } from "../Icons/Icons";
+import { SidebarProps, SidebarItemProps } from "@/types/types";
 import Paystride from "@/app/assets/Paystride.svg";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -16,22 +17,12 @@ import Settings from "../Settings/Settings";
 import Notification from "../Notification/Notification";
 import SignOut from "../SignOut/SignOut";
 
-type Props = {
-  display?: string;
-  displaymd?: string;
-};
-export type SidebarProps = {
-  title: string;
-  href: string;
-  icon: (color: any) => JSX.Element;
-};
-
 type NavbarProps = {
   navTitle: string;
   component: ReactNode;
 };
 
-const Sidebar = ({ display, displaymd }: Props) => {
+const Sidebar = ({ display, displaymd }: SidebarProps) => {
   const sideBarItems = [
     {
       title: "Dashboard",
@@ -86,9 +77,9 @@ const Sidebar = ({ display, displaymd }: Props) => {
             Paystride
           </h1>
         </div>
-
+        <hr className="bg-gradient-to-r from-[#e0e1e200] via-[#E0E1E2] to-[#e0e1e20d] w-full h-[1px] my-1 border-transparent" />
         <div className="flex flex-col item-center justify-center overflow-hidden bg-[#F8F9FA]">
-          <div className="flex flex-col mt-4">
+          <div className="flex flex-col mt-3">
             {sideBarItems.map((item, index) => {
               return <SidebarItem key={index} item={item} />;
             })}
@@ -104,7 +95,7 @@ const Sidebar = ({ display, displaymd }: Props) => {
   );
 };
 
-const SidebarItem = ({ item }: { item: SidebarProps }) => {
+const SidebarItem = ({ item }: { item: SidebarItemProps }) => {
   const pathName = usePathname();
   const isActive = pathName === item.href;
 
