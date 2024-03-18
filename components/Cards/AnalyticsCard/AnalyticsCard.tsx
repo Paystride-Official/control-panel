@@ -1,10 +1,10 @@
-import React from "react";
-import Image from "next/image";
-import { AnalyticsCardProps } from "@/types/types";
+import React from "react"
+import Image from "next/image"
+import { AnalyticsCardProps } from "@/types/types"
 
 type Props = {
-  pageAnalytics: AnalyticsCardProps[];
-};
+  pageAnalytics: AnalyticsCardProps[]
+}
 
 const AnalyticsCard = ({ pageAnalytics }: Props) => {
   return (
@@ -30,10 +30,10 @@ const AnalyticsCard = ({ pageAnalytics }: Props) => {
               <Image src={item.icon} alt={item.icon} width={23} />
             </div>
           </div>
-        );
+        )
       })}
     </div>
-  );
-};
+  )
+}
 
-export default AnalyticsCard;
+export default AnalyticsCard

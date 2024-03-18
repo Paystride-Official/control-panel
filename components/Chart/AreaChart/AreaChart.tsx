@@ -32,9 +32,18 @@ export default function AChart() {
           </defs>
           <CartesianGrid strokeDasharray="3 3" vertical={false} />
 
-          <XAxis dataKey="name" axisLine={false} tickLine={false} />
+          <XAxis
+            dataKey="name"
+            axisLine={false}
+            tickLine={false}
+            tick={{ fontSize: 12, fill: "#CBD5E0", fontWeight: "bold" }}
+          />
 
-          <YAxis axisLine={false} tickLine={false} />
+          <YAxis
+            axisLine={false}
+            tickLine={false}
+            tick={{ fontSize: 12, fill: "#CBD5E0", fontWeight: "bold" }}
+          />
 
           <Tooltip />
 

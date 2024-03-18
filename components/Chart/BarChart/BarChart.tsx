@@ -1,108 +1,50 @@
+"use client";
 import React from "react";
+import { barChartData } from "@/Utils/constants";
 import {
-    BarChart,
-    Bar,
-    XAxis,
-    YAxis,
-    CartesianGrid,
-    Tooltip,
-    ResponsiveContainer,
-    BarProps,
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+  ResponsiveContainer,
 } from "recharts";
 
-const data = [
-    {
-        name: "Jan",
-        uv: 45,
-        amt: 2400,
-    },
-    {
-        name: "Feb",
-        uv: 85,
-        amt: 2210,
-    },
-    {
-        name: "Mar",
-        uv: 55,
-        amt: 2290,
-    },
-    {
-        name: "Apr",
-        uv: 60,
-        pv: 3908,
-        amt: 2000,
-    },
-    {
-        name: "May",
-        uv: 90,
-        amt: 2181,
-    },
-    {
-        name: "Jun",
-        uv: 63,
-        amt: 2500,
-    },
-    {
-        name: "Jul",
-        uv: 100,
-        amt: 2100,
-    },
-    {
-        name: "Aug",
-        uv: 76,
-        amt: 2100,
-    },
-    {
-        name: "Sep",
-        uv: 70,
-        amt: 2100,
-    },
-    {
-        name: "Oct",
-        uv: 100,
-        amt: 2100,
-    },
-    {
-        name: "Nov",
-
-        amt: 2100,
-    },
-    {
-        name: "Dec",
-
-        amt: 2100,
-    },
-];
-
 export default function BChart() {
-    return (
-        <div className="h-[12rem] sm:h-[19rem]" style={{ width: "100%" }}>
-            <ResponsiveContainer>
-                <BarChart
-                    data={data}
-                    margin={{
-                        top: 5,
-                        right: 5,
-                        left: -25,
-                        bottom: 0,
-                    }}
-                >
-                    <CartesianGrid strokeDasharray="3 3" vertical={false} />
-
-                    <XAxis dataKey="name" axisLine={false} tickLine={false} />
-
-                    <YAxis axisLine={false} tickLine={false} />
-
-                    {/* <Tooltip /> */}
-
-                    <Bar
-                        type="monotone"
-                        dataKey="uv"
-                        stroke="transparent"
-                        fill="red"
-                    />
-                </BarChart>
-            </ResponsiveContainer>
-        </div>
-    );
+  return (
+    <div className="h-[12rem] sm:h-[19rem]" style={{ width: "100%" }}>
+      <ResponsiveContainer>
+        <BarChart layout="vertical" height={350} data={barChartData}>
+          <defs>
+            <linearGradient id="colorBar" x1="1" y1="1" x2="0" y2="0">
+              <stop offset="50%" stopColor="#091F8EEF" stopOpacity={0.5} />
+              <stop offset="90%" stopColor="#091F8E50" stopOpacity={0.5} />
+            </linearGradient>
+          </defs>
+          <XAxis
+            axisLine={false}
+            tickLine={false}
+            type="number"
+            display="none"
+          />
+          <YAxis
+            axisLine={false}
+            tickLine={false}
+            dataKey="location"
+            type="category"
+            tick={{ fontSize: 12, fill: "#CBD5E0", fontWeight: "bold" }}
+          />
+          <Tooltip />
+          <Bar
+            type="monotone"
+            dataKey="uv"
+            stroke="transparent"
+            fillOpacity={1}
+            fill="url(#colorBar)"
+            label={{ position: "right" }}
+          />
+        </BarChart>
+      </ResponsiveContainer>
+    </div>
+  );
 }
