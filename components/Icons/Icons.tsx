@@ -1,5 +1,4 @@
 export const Dashboard = ({ color }: any) => {
-  console.log(color);
   return (
     <svg
       width="16"
@@ -29,8 +28,8 @@ export const Dashboard = ({ color }: any) => {
         </clipPath>
       </defs>
     </svg>
-  );
-};
+  )
+}
 
 export const Transaction = ({ color }: any) => {
   return (
@@ -58,8 +57,8 @@ export const Transaction = ({ color }: any) => {
         fill={color}
       />
     </svg>
-  );
-};
+  )
+}
 
 export const Merchant = ({ color }: any) => {
   return (
@@ -83,8 +82,8 @@ export const Merchant = ({ color }: any) => {
         fill={color}
       />
     </svg>
-  );
-};
+  )
+}
 
 export const Permission = ({ color }: any) => {
   return (
@@ -100,8 +99,8 @@ export const Permission = ({ color }: any) => {
         fill={color}
       />
     </svg>
-  );
-};
+  )
+}
 
 export const Settlement = ({ color }: any) => {
   return (
@@ -117,5 +116,5 @@ export const Settlement = ({ color }: any) => {
         fill={color}
       />
     </svg>
-  );
-};
+  )
+}
