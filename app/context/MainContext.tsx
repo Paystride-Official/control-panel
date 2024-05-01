@@ -3,7 +3,7 @@ import { Dashboard } from '@/components/Icons/Icons';
 import { createContext,useContext, useState } from "react";
 
 
-const MainContext = createContext({})
+const MainContext = createContext<null | any>({})
 
 interface Dashboard {
       transaction: number,
