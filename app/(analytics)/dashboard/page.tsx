@@ -1,4 +1,4 @@
-import React from "react";
+"use client"
 import { AnalyticsCardProps } from "@/types/types";
 import CreditCard from "@/components/Cards/CreditCard/CreditCard";
 import AnalyticsCard from "@/components/Cards/AnalyticsCard/AnalyticsCard";
@@ -9,28 +9,38 @@ import Cart from "@/components/Cards/assets/Cart.svg";
 import Arrowdown from "@/app/(analytics)/dashboard/assets/arrowDownSlim.svg";
 import AChart from "@/components/Chart/AreaChart/AreaChart";
 import BChart from "@/components/Chart/BarChart/BarChart";
+import { useEffect } from "react";
+import { useMainContext } from "@/app/context/MainContext";
 
 type Props = {};
 
 const Dashboard = (props: Props) => {
+
+  const { dashData,dashboard } = useMainContext();
   const dashboardAnalytics: AnalyticsCardProps[] = [
     {
       title: "Transaction",
-      amount: "$50,000",
-      profit: "+55%",
+      amount: dashboard ? dashboard.today_transaction : 0,
+      profit: dashboard ? dashboard.profit_percentage : 0,
       icon: Folder,
     },
     {
       title: "Failed Settlement",
-      amount: "2",
+      amount: dashboard ? dashboard.failed_settlement : 0,
       icon: File,
     },
     {
       title: "All Merchant",
-      amount: "3,052",
+      amount: dashboard ? dashboard.merchant : 0,
       icon: Cart,
     },
   ];
+
+  useEffect(() => {
+    dashData()
+  },[])
+
+
 
   return (
     <div className="">
@@ -51,7 +61,7 @@ const Dashboard = (props: Props) => {
           </div>
           <div className="">
             <hr className="bg-gradient-to-r from-[#e0e1e200] via-[#E0E1E2] to-[#e0e1e20d] w-full h-[1.5px] border-transparent" />
-            <p className="font-bold sm:text-lg leading-6">$2,000,000</p>
+            <p className="font-bold sm:text-lg leading-6">${!dashboard ? 0 : dashboard.profit}</p>
           </div>
         </div>
       </div>

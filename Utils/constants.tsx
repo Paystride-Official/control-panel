@@ -1,3 +1,8 @@
+import axios from "axios"
+
+const DEV_SERVER = "http://localhost:8000/api/"
+const TEST_SERVER = "https://api.paystride.co/api/admin"
+
 export const areaChartData = [
   {
     name: "Jan",
@@ -412,3 +417,19 @@ export const transactionRow = [
     settlement: "Sucessful",
   },
 ];
+
+
+export default axios.create({
+  baseURL: DEV_SERVER,
+  headers: {
+    "Content-Type": "application/json"
+  }
+})
+
+// export const axiosPrivate = axios.create({
+// baseURL: DEV_SERVER,
+//   headers: {
+//     "Content-Type": "application/json",
+//     "Authorization":
+//   }
+// })
