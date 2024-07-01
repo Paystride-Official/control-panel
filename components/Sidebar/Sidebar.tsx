@@ -16,6 +16,8 @@ import { ReactNode } from "react";
 import Settings from "../Settings/Settings";
 import Notification from "../Notification/Notification";
 import SignOut from "../SignOut/SignOut";
+import { RootState } from "@/store";
+import { useSelector } from "react-redux";
 
 type NavbarProps = {
   navTitle: string;
@@ -97,7 +99,9 @@ const Sidebar = ({ display, displaymd }: SidebarProps) => {
 
 const SidebarItem = ({ item }: { item: SidebarItemProps }) => {
   const pathName = usePathname();
-  const isActive = pathName === item.href;
+  const user = useSelector((state: RootState) => state.user.user);
+  const isActive = pathName === `${item.href}/${user?.id}`;
+  console.log(pathName);
 
   return (
     <button
@@ -115,7 +119,7 @@ const SidebarItem = ({ item }: { item: SidebarItemProps }) => {
       )}
     >
       <Link
-        href={item.href}
+        href={`${item.href}/${user?.id}`}
         className="flex items-center gap-2 py-2 px-8 sm:px-10 w-full"
       >
         <span
