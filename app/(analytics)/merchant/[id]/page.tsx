@@ -1,45 +1,45 @@
-"use client"
-import React, { useState } from "react"
-import { AnalyticsCardProps } from "@/types/types"
-import Cart from "@/components/Cards/assets/Cart.svg"
-import AnalyticsCard from "@/components/Cards/AnalyticsCard/AnalyticsCard"
-import All from "./_components/All/All"
-import New from "./_components/New/New"
-import Existing from "./_components/Existing/Existing"
-import IncompleteOnboarding from "./_components/IncompleteOnboarding/IncompleteOnboarding"
-import MerchantMenu from "./_components/MerchantMenu/MerchantMenu"
+"use client";
+import React, { useState } from "react";
+import { AnalyticsCardProps } from "@/types/types";
+import Cart from "@/components/Cards/assets/Cart.svg";
+import AnalyticsCard from "@/components/Cards/AnalyticsCard/AnalyticsCard";
+import All from "../_components/All/All";
+import New from "../_components/New/New";
+import Existing from "../_components/Existing/Existing";
+import IncompleteOnboarding from "../_components/IncompleteOnboarding/IncompleteOnboarding";
+import MerchantMenu from "../_components/MerchantMenu/MerchantMenu";
 
-type Props = {}
+type Props = {};
 
 const Merchant = (props: Props) => {
-  const [selectedMerchant, setSelectedMerchant] = useState<string>("all")
+  const [selectedMerchant, setSelectedMerchant] = useState<string>("all");
 
   const handleCickMerchant = (item: string) => {
-    setSelectedMerchant(item)
-  }
+    setSelectedMerchant(item);
+  };
 
   const stepToRender = (key: string) => {
     switch (key) {
       case "all":
-        return <All />
+        return <All />;
       case "new":
-        return <New />
+        return <New />;
       case "existing":
-        return <Existing />
+        return <Existing />;
       case "incompleteOnboarding":
-        return <IncompleteOnboarding />
+        return <IncompleteOnboarding />;
 
       default:
-        break
+        break;
     }
-  }
+  };
   const merchantAnalytics: AnalyticsCardProps[] = [
     {
       title: "No of Merchant",
       amount: "2",
       icon: Cart,
     },
-  ]
+  ];
 
   return (
     <div>
@@ -55,7 +55,7 @@ const Merchant = (props: Props) => {
         </div>
       </section>
     </div>
-  )
-}
+  );
+};
 
-export default Merchant
+export default Merchant;

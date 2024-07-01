@@ -4,15 +4,21 @@ import React from "react";
 import Paystride from "@/app/assets/Paystride.svg";
 import Link from "next/link";
 import { useForm, FieldValues } from "react-hook-form";
+import { useMutation } from "@tanstack/react-query";
+import { signInAccount } from "./_userSlice/api";
 
 type Props = {};
 
 const Login = (props: Props) => {
   const { register, handleSubmit, getValues, reset } = useForm();
 
-  const handleOnSubmit = (data: FieldValues) => {
-    const loginData = getValues();
-    console.log(loginData);
+  const { mutateAsync: SignInAcount } = useMutation({
+    mutationFn: (data: FieldValues) => signInAccount(data),
+  });
+
+  const handleOnSubmit = async (data: FieldValues) => {
+    const response = await SignInAcount(data);
+
     reset();
   };
 

@@ -10,7 +10,7 @@ type Props = {};
 
 const Navbar = (props: Props) => {
   const pathName = usePathname();
-  const pageName = pathName.replace("/", "");
+  const pageName = pathName.split("/")[1].replace("/", "");
 
   return (
     <section className="bg-[#F8F9FA] h-[4.5rem] sticky top-0 z-10 px-5 md:px-0">
