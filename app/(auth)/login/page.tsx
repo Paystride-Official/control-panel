@@ -1,16 +1,25 @@
 "use client";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Paystride from "@/app/assets/Paystride.svg";
 import Link from "next/link";
 import { useForm, FieldValues } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import { signInAccount } from "./_userSlice/api";
-
+import { User } from "@/types/types";
+import { useRouter } from "next/navigation";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/store";
+import { updataUser } from "./_userSlice/reducer";
+useDispatch;
 type Props = {};
 
 const Login = (props: Props) => {
-  const { register, handleSubmit, getValues, reset } = useForm();
+  const router = useRouter();
+  const dispatch = useDispatch();
+  const [loginResponse, setLoginResponse] = useState<User>();
+  const { register, handleSubmit, reset } = useForm();
+  const user = useSelector((state: RootState) => state.user.user);
 
   const { mutateAsync: SignInAcount } = useMutation({
     mutationFn: (data: FieldValues) => signInAccount(data),
@@ -18,13 +27,22 @@ const Login = (props: Props) => {
 
   const handleOnSubmit = async (data: FieldValues) => {
     const response = await SignInAcount(data);
-
-    reset();
+    if (response?.success && response?.success.role === "admin") {
+      setLoginResponse(response.success);
+      router.push(`dashboard/${response?.success?.id}`);
+      reset();
+    } else {
+      router.push("/login");
+    }
   };
+
+  useEffect(() => {
+    !user?.id && dispatch(updataUser(loginResponse as User));
+  }, [loginResponse]);
 
   return (
     <div className="flex justify-center items-center h-screen">
-      <div className="bg-gradient-to-b from-[#e0e2eb70] to-[#091f8e4b] text-[#7F7F7F] w-[80%] md:w-[40rem] p-5 rounded-xl">
+      <div className="bg-gradient-to-b from-[#e0e2eb70] to-[#091f8e4b] text-[#7F7F7F] w-[25rem] md:w-[40rem] p-5 rounded-xl">
         <Image src={Paystride} alt="paystride" className="w-auto" />
         <div className="my-8">
           <h2 className="font-bold text-3xl">Sign In</h2>
@@ -49,7 +67,7 @@ const Login = (props: Props) => {
           />
           <div className="flex justify-between items-center text-xs mb-10">
             <div className="flex items-center gap-1">
-              <input type="checkbox" name="" id="rememberCheck" required />
+              {/* <input type="checkbox" name="" id="rememberCheck" required /> */}
               <label htmlFor="rememberCheck">Remember me</label>
             </div>
             <Link href="/forget-password">
