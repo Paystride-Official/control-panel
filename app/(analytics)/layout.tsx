@@ -1,16 +1,16 @@
-import Navbar from "@/components/Navbar/Navbar"
-import Sidebar from "@/components/Sidebar/Sidebar"
-import type { Metadata } from "next"
+import Navbar from "@/components/Navbar/Navbar";
+import Sidebar from "@/components/Sidebar/Sidebar";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Paystride: Control Panel",
   description: "Paystride's control panel",
-}
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <section>
@@ -24,5 +24,5 @@ export default function RootLayout({
         </div>
       </main>
     </section>
-  )
+  );
 }

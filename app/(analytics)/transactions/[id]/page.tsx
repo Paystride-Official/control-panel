@@ -1,15 +1,24 @@
-import React from "react"
-import { TableComponent } from "@/components/Table/Table"
-import AnalyticsCard from "@/components/Cards/AnalyticsCard/AnalyticsCard"
-import Folder from "@/components/Cards/assets/Folder.svg"
-import Cart from "@/components/Cards/assets/Cart.svg"
-import File from "@/components/Cards/assets/File.svg"
-import { AnalyticsCardProps } from "@/types/types"
-import { transactionCol, transactionRow } from "@/Utils/constants"
+"use client";
+import React from "react";
+import { useQuery } from "@tanstack/react-query";
 
-type Props = {}
+import { TableComponent } from "@/components/Table/Table";
+import AnalyticsCard from "@/components/Cards/AnalyticsCard/AnalyticsCard";
+import Folder from "@/components/Cards/assets/Folder.svg";
+import Cart from "@/components/Cards/assets/Cart.svg";
+import File from "@/components/Cards/assets/File.svg";
+import { AnalyticsCardProps } from "@/types/types";
+import { transactionCol, transactionRow } from "@/Utils/constants";
+import { getAllTransaction } from "../_slice/api";
+
+type Props = {};
 
 const Transaction = (props: Props) => {
+  const { data, isLoading } = useQuery({
+    queryKey: ["transactionAnalytics"],
+    queryFn: getAllTransaction,
+  });
+
   const transactionAnalytics: AnalyticsCardProps[] = [
     {
       title: "Transaction",
@@ -24,10 +33,10 @@ const Transaction = (props: Props) => {
     },
     {
       title: "No of Transactions",
-      amount: "3,052",
+      amount: data?.success.count,
       icon: File,
     },
-  ]
+  ];
 
   return (
     <div>
@@ -36,7 +45,7 @@ const Transaction = (props: Props) => {
         <TableComponent columns={transactionCol} rows={transactionRow} />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Transaction
+export default Transaction;

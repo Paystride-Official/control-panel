@@ -1,5 +1,7 @@
 "use client";
 import React, { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+
 import { AnalyticsCardProps } from "@/types/types";
 import Cart from "@/components/Cards/assets/Cart.svg";
 import AnalyticsCard from "@/components/Cards/AnalyticsCard/AnalyticsCard";
@@ -8,6 +10,7 @@ import New from "../_components/New/New";
 import Existing from "../_components/Existing/Existing";
 import IncompleteOnboarding from "../_components/IncompleteOnboarding/IncompleteOnboarding";
 import MerchantMenu from "../_components/MerchantMenu/MerchantMenu";
+import { getAllMerchants } from "../_slice/api";
 
 type Props = {};
 
@@ -17,6 +20,11 @@ const Merchant = (props: Props) => {
   const handleCickMerchant = (item: string) => {
     setSelectedMerchant(item);
   };
+
+  const { data, isLoading } = useQuery({
+    queryKey: ["allMerchants"],
+    queryFn: getAllMerchants,
+  });
 
   const stepToRender = (key: string) => {
     switch (key) {

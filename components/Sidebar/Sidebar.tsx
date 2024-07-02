@@ -67,10 +67,10 @@ const Sidebar = ({ display, displaymd }: SidebarProps) => {
       component: <SignOut />,
     },
   ];
-
+  // ${display} md:${displaymd}
   return (
     <div
-      className={` min-h-screen sticky bg-[#F8F9FA] ${display} md:${displaymd} `}
+      className={` min-h-screen sticky bg-[#F8F9FA]  ${display} md:${displaymd} `}
     >
       <div className="h-screen sticky top-0 left-0 w-52 sm:w-64 px-4">
         <div className="flex pl-12 h-[4.5rem] items-center  bg-[#F8F9FA]">
@@ -101,7 +101,7 @@ const SidebarItem = ({ item }: { item: SidebarItemProps }) => {
   const pathName = usePathname();
   const user = useSelector((state: RootState) => state.user.user);
   const isActive = pathName === `${item.href}/${user?.id}`;
-  console.log(pathName);
+  console.log(pathName, `${item.href}/${user?.id}`, isActive);
 
   return (
     <button
